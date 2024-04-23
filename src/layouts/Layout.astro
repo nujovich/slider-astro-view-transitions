@@ -1,0 +1,71 @@
+---
+import Footer from "../components/Footer.astro";
+import Header from "../components/Header.astro";
+import { ViewTransitions, slide } from "astro:transitions";
+import Video from "../components/Video.astro";
+
+interface Props {
+  title: string;
+}
+
+const { title } = Astro.props;
+---
+
+<!DOCTYPE html>
+<html lang="en" transition:animate={slide({ duration: "1.5s" })}>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="description" content="Astro description" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{title}</title>
+    <ViewTransitions />
+  </head>
+  <body>
+    <Header />
+    <slot />
+    <Video />
+    <Footer />
+    <style is:global>
+      html {
+        font-family: system-ui, sans-serif;
+        background: #13151a;
+        margin: 0;
+        padding: 0;
+      }
+      body {
+        display: grid;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+      }
+      nav {
+        padding: 1rem;
+        text-decoration: none;
+      }
+      code {
+        font-family: Menlo, Monaco, Lucida Console, Liberation Mono,
+          DejaVu Sans Mono, Bitstream Vera Sans Mono, Courier New, monospace;
+      }
+      footer {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 1rem;
+      }
+
+      h1 {
+        color: white;
+        text-align: center;
+      }
+
+      a {
+        padding: 0.5rem 1rem;
+        color: white;
+        background-color: #4c1d95;
+        text-decoration: none;
+      }
+    </style>
+  </body>
+</html>
